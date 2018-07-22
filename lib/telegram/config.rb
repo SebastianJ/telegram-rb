@@ -20,7 +20,7 @@ module Telegram
       size: 5
     }.freeze
 
-    def_delegators :@options, :daemon, :daemon=, :key, :key=, :sock, :sock=, :port, :port=
+    def_delegators :@options, :daemon, :daemon=, :key, :key=, :sock, :sock=, :port, :port=,
                    :size, :size=, :profile, :profile=, :logger, :logger=,
                    :config_file, :config_file=
 
