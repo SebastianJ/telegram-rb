@@ -40,6 +40,10 @@ module Telegram
     def udp_socket
       "-S '#{@config.sock}'"
     end
+    
+    def port
+      "-P #{@config.port}" if @config.port
+    end
 
     def json
       '--json'
