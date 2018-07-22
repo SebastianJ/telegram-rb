@@ -297,6 +297,17 @@ module Telegram
       assert!
       @connection.communicate(['add_contact', phone_number, first_name.escape, last_name.escape], &callback)
     end
+    
+    def join_channel(channel_name, &callback)
+      assert!
+      resolve_username(channel_name.gsub("@", "")) do |success, data|
+        if success
+          channel_name    =   channel_name =~ /^@/i ? channel_name : "@#{channel_name}"
+          @connection.communicate(['channel_join', channel_name], &callback)
+        end
+      end
+    end
+    
     # Closes the telegram CLI app (used in case of app shutdown to kill the child process)
     #
     def disconnect(&callback)
