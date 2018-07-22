@@ -301,12 +301,10 @@ module Telegram
       @user = @sender = event.message.from
       @receiver = event.message.to
 
-      @target = case (@receiver ? @receiver.type : nil)
+      @target = case @receiver.type
       when 'user'
         @sender
-      when 'chat', 'encr_chat', 'channel'
-        @receiver
-      else
+      when 'chat', 'encr_chat'
         @receiver
       end
     end

@@ -189,10 +189,10 @@ module Telegram
       if @message.to.nil?
         type = @raw_data['to']['peer_type']
         case type
-        when 'chat', 'encr_chat', 'channel'
+        when 'chat', 'encr_chat'
           chat = TelegramChat.pick_or_new(@client, @raw_data['to'])
           @client.chats << chat unless @client.chats.include?(chat)
-          if type == 'encr_chat' || type == 'channel'
+          if type == 'encr_chat' then
             @message.to = chat
           else
             @message.from = chat

@@ -96,7 +96,7 @@ module Telegram
         if success and data.class == Array
           chatsize = data.count { |chat| chat['peer_type'] == 'chat' }
           data.each do |chat|
-            if chat['peer_type'] == 'chat' || chat['peer_type'] == 'channel'
+            if chat['peer_type'] == 'chat'
               collect.call(chat['peer_id'], chatsize)
             elsif chat['peer_type'] == 'user'
               @chats << TelegramChat.new(self, chat)
