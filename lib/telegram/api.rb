@@ -109,7 +109,17 @@ module Telegram
       end
       callback
     end
-
+    
+    # Resolve a username and get the corresponding id
+    #
+    # @param [String] text Username to resolve
+    # @yieldparam [Bool] success The result of the request (true or false)
+    # @yieldparam [Hash] data The data of the request
+    def resolve_username(username, &callback)
+      assert!
+      @connection.communicate(['resolve_username', username], &callback)
+    end
+    
     # Send a message to specific user or chat
     #
     # @param [String] target Target to send a message
